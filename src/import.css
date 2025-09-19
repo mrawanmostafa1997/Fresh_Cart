@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@plugin "flowbite/plugin";
+
+/* Tell Tailwind where to scan for classes */
+@source "./**/*.{html,ts}";
+@source "../node_modules/flowbite/**/*.js";
+
+/* Design tokens */
+@theme {
+  --color-main: #0aad0a;
+}
+.container {
+  @apply mx-auto w-11/12;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center border-2 transition-colors text-white;
+  background: var(--color-main);
+  border-color: var(--color-main);
+}
+.btn:hover,
+.btn:focus {
+  background: #fff;
+  color: var(--color-main);
+  border-color: var(--color-main);
+}
+
+.btn-main {
+  @apply px-4 py-2 rounded-xl inline-flex items-center justify-center border-2 transition-colors text-white;
+  background: var(--color-main);
+  border-color: var(--color-main);
+}
+.btn-main:hover,
+.btn-main:focus {
+  background: #fff;
+  color: var(--color-main);
+  border-color: var(--color-main);
+}
+
+.alert-danger {
+  @apply bg-red-200 text-red-700 p-1 rounded;
+}
+.row {
+  @apply flex flex-wrap;
+}
+
+body {
+  font-family: "Encode Sans Expanded", "Inter", "Raleway", "Source Code Pro",
+    sans-serif;
+}

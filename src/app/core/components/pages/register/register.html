@@ -1,0 +1,126 @@
+<section class="w-3/4 mx-auto">
+  <h1 class="text-2xl text-main my-3">Register Now :</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+    @if(errorMessage){
+    <div class="alert-danger">
+      <p>{{ errorMessage }}</p>
+    </div>
+    }
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Name :</label>
+      <input
+        type="text"
+        class="form-control rounded w-full"
+        id="nameInput"
+        placeholder="Enter Your Name"
+        formControlName="name"
+      />
+      @if(registerForm.get('name')?.touched && registerForm.get('name')?.errors)
+      {
+
+      <div class="alert-danger">
+        @if(registerForm.get('name')?.errors?.['required']) {
+        <p>name is required</p>
+        }@else if (registerForm.get('name')?.errors?.['maxlength']) {
+        <p>max length is 8</p>
+        } @else if(registerForm.get('name')?.errors?.['minlength']) {
+        <p>min length is 3</p>
+        }
+      </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address :</label>
+      <input
+        type="email"
+        class="form-control rounded w-full"
+        id="emailInput"
+        placeholder="Enter Your Email"
+        formControlName="email"
+      />
+      @if(registerForm.get('email')?.touched &&
+      registerForm.get('email')?.errors) {
+      <div class="alert-danger">
+        @if(registerForm.get('email')?.errors?.['required']) {
+        <p>email is required</p>
+        }@else if (registerForm.get('email')?.errors?.['email']) {
+        <p>incorrect email format</p>
+        }
+      </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password :</label>
+      <input
+        type="password"
+        class="form-control rounded w-full"
+        id="passwordInput"
+        placeholder="Enter Your Password"
+        formControlName="password"
+      />
+      @if(registerForm.get('password')?.touched &&
+      registerForm.get('password')?.errors) {
+      <div class="alert-danger">
+        @if(registerForm.get('password')?.errors?.['required']) {
+        <p>password is required</p>
+        }@else if (registerForm.get('password')?.errors?.['pattern']) {
+        <p>
+          incorrect password must me start by Uppercase and characters and
+          numbers
+        </p>
+        }
+      </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="repassword" class="form-label">RePassword :</label>
+      <input
+        type="password"
+        class="form-control rounded w-full"
+        id="rePasswordInput"
+        placeholder="Enter Your Password"
+        formControlName="rePassword"
+      />
+      @if (registerForm.get('rePassword')?.touched &&
+      registerForm.get('rePassword')?.errors?.['mismatch']) {
+      <div class="alert-danger">
+        <p>passwords do not match</p>
+      </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone :</label>
+      <input
+        type="tel"
+        class="form-control rounded w-full"
+        id="phoneInput"
+        placeholder="Enter Your Phone number"
+        formControlName="phone"
+      />
+      @if(registerForm.get('phone')?.touched &&
+      registerForm.get('phone')?.errors) {
+      <div class="alert-danger">
+        @if(registerForm.get('phone')?.errors?.['required']) {
+        <p>password is required</p>
+        }@else if (registerForm.get('phone')?.errors?.['pattern']) {
+        <p>incorrect Phone Number</p>
+        }
+      </div>
+      }
+    </div>
+    <button
+      [disabled]="registerForm.invalid"
+      type="submit"
+      class="btn btn-main w-2/12 mb-5 block me-auto"
+    >
+      @if(isLoading) {
+      <span
+        class="fa-solid fa-spinner fa-spin"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      }@else{<span>Register</span> }
+    </button>
+  </form>
+</section>

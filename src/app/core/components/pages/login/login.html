@@ -1,0 +1,59 @@
+@if(errMsg){
+<div class="alert-danger">{{ errMsg }}</div>
+}
+
+<form [formGroup]="formLogin" (ngSubmit)="loginForm()">
+  <div>
+    <label class="form-label" for="email">email</label>
+    <input
+      class="form-control rounded w-full"
+      formControlName="email"
+      type="email"
+      placeholder="please enter you email here"
+    />
+    @if(formLogin.get('email')?.errors && formLogin.get('email')?.touched ) {
+    <div class="alert-danger">
+      @if(formLogin.get('email')?.errors?.['email']) {
+      <span>the email format is not correct</span>
+      } @else if(formLogin.get('email')?.errors?.['required']) {
+      <span>the email field is required</span>
+      }
+    </div>
+    }
+  </div>
+  <div>
+    <label class="form-label" for="passwordInput">password</label>
+    <input
+      class="form-control rounded w-full"
+      formControlName="password"
+      type="password"
+      placeholder="Please Enter Password here."
+    />
+    @if(formLogin.get('password')?.errors && formLogin.get('password')?.touched
+    ) {
+    <div class="alert-danger">
+      @if(formLogin.get('password')?.errors?.['pattern']) {
+      <span>the password format is not correct</span>
+      } @else if(formLogin.get('password')?.errors?.['required']) {
+      <span>the password field is required</span>
+      }
+    </div>
+    }
+  </div>
+  <div class="flex items-center justify-between gap-4 mb-5">
+    <a routerLink="/forgetpassword" class="text-blue-700 underline"
+      >Forget Password</a
+    >
+    <button class="btn btn-main w-1/5 mt-2" type="submit">
+      @if(isLoading) {
+      <span
+        class="fa-solid fa-spinner fa-spin"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      }@else{
+      <span>Login</span>
+      }
+    </button>
+  </div>
+</form>

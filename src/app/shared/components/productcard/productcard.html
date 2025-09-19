@@ -1,0 +1,25 @@
+<div class="border group overflow-hidden border-main p-2">
+  <div [routerLink]="['/productdetails', prd._id]" class="space-y-1">
+    <img [src]="prd.imageCover" class="w-full" [alt]="prd.title" />
+    <h4 class="text-main text-2xs">{{ prd.category.name }}</h4>
+    <h3 class="text-sm">
+      {{ prd.title.split(" ").slice(0, 2).join(" ") }}
+    </h3>
+    <div class="row justify-between item-center">
+      <span>{{ prd.price | currency : "EGP" : "symbol" : "1.0-0" }}</span>
+      <span
+        ><i class="fa-solid fa-star text-yellow-400">
+          {{ prd.ratingsAverage }}</i
+        ></span
+      >
+      <span class="text-gray-500">({{ prd.quantity }})</span>
+    </div>
+  </div>
+
+  <button
+    (click)="addProductToCart(prd._id)"
+    class="btn btn-main w-full mt-3 translate-y-[130%] group-hover:translate-y-0 transition-transform duration-1000 ease-out"
+  >
+    Add To Cart
+  </button>
+</div>

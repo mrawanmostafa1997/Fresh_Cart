@@ -1,0 +1,61 @@
+<section>
+  <div
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
+  >
+    @for ( prd of (userWord.trim() === '' ? productList : (productList | search:
+    userWord)); track prd._id ) {
+    <div class="p-3 cursor-pointer">
+      <app-productcard [prd]="prd"></app-productcard>
+    </div>
+    } @empty {
+    <p class="col-span-full text-gray-500">No products found.</p>
+    }
+  </div>
+  <div class="flex items-center justify-center my-5">
+    <!-- Previous Button -->
+    <a
+      routerLink="/products"
+      [queryParams]="{ page: currentPage - 1 }"
+      class="cursor-pointer flex btn btn-main items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+    >
+      <svg
+        class="w-3.5 h-3.5 me-2 rtl:rotate-180"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 14 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 5H1m0 0 4 4M1 5l4-4"
+        />
+      </svg>
+      Previous
+    </a>
+    <a
+      routerLink="/products"
+      [queryParams]="{ page: currentPage + 1 }"
+      class="flex cursor-pointer items-center btn btn-main justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+    >
+      Next
+      <svg
+        class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 14 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M1 5h12m0 0L9 1m4 4L9 9"
+        />
+      </svg>
+    </a>
+  </div>
+</section>

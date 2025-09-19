@@ -1,0 +1,19 @@
+<section>
+  <h2 class="text-xl text-main my-5">Shop Pobular Categories:</h2>
+  <owl-carousel-o [options]="customOptions">
+    @for (category of CategoryList; track category._id) {
+    <ng-template carouselSlide [id]="category._id">
+      <div class="h-[150px] overflow-hidden rounded">
+        <img
+          [src]="category?.image || '/images/placeholder.png'"
+          class="block w-full h-full object-cover"
+          [attr.alt]="category?.name || 'Category image'"
+          loading="lazy"
+        />
+      </div>
+
+      <h3>{{ category.name }}</h3>
+    </ng-template>
+    }
+  </owl-carousel-o>
+</section>

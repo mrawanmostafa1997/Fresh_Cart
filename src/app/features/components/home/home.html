@@ -1,0 +1,26 @@
+<app-homeslider></app-homeslider>
+<app-categoryslider></app-categoryslider>
+
+<section class="container mx-auto w-11/12">
+  <form>
+    <input
+      type="text"
+      class="border border-main form-control p-2 w-full my-5"
+      placeholder="Search By Product Name"
+      [(ngModel)]="userWord"
+      name="search"
+    />
+  </form>
+  <div
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
+  >
+    @for ( prd of (userWord.trim() === '' ? productList : (productList | search:
+    userWord)); track prd._id ) {
+    <div class="p-3 cursor-pointer">
+      <app-productcard [prd]="prd"></app-productcard>
+    </div>
+    } @empty {
+    <p class="col-span-full text-gray-500">No products found.</p>
+    }
+  </div>
+</section>
